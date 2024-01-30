@@ -1,0 +1,67 @@
+﻿@page
+@model LoginModel
+@{
+    <style>
+        container{
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #3e8e41;
+            }
+    </style>
+<div class="container">
+    <form method="post">
+            @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"] as string))
+            {
+                <div class="alert alert-danger" role="alert">
+                    @Html.Raw(ViewData["ErrorMessage"])
+                </div>
+            }
+        <h1>Please log in here</h1>
+        <div class="form-group">
+            <label for="userName">User Name:</label>
+                <input type="text" id="userName" name="userName" asp-validation-for="userName" class="form-control">
+                <span asp-validation-for="Username" class="validation-error"></span>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input asp- type="password" id="password" name="password" class="form-control">
+                <span asp-validation-for="Password" class="validation-error"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Log in</button>
+    </form>
+</div>
+}
