@@ -259,3 +259,4 @@ D:\PRN-Application\Assignments 2\SignalRAssignment\SignalRAssignment\bin\Debug\n
 D:\PRN-Application\Assignments 2\SignalRAssignment\SignalRAssignment\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
 D:\PRN-Application\Assignments 2\SignalRAssignment\SignalRAssignment\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 D:\PRN-Application\Assignments 2\SignalRAssignment\SignalRAssignment\bin\Debug\net8.0\Microsoft.JSInterop.dll
+D:\PRN-Application\Assignments 2\SignalRAssignment\SignalRAssignment\obj\Debug\net8.0\SignalRAssignment.sourcelink.json

@@ -2,12 +2,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SignalRAssignment.Models;
+using SignalRAssignment.Repo;
 
 namespace SignalRAssignment.Pages
 {
     public class ProductListModel : PageModel
     {
         private readonly ApplicationDBContext _context;
+        ProductService _productService = new ProductService();
 
         public ProductListModel(ApplicationDBContext context)
         {
@@ -19,7 +21,7 @@ namespace SignalRAssignment.Pages
 
         public async Task OnGetAsync()
         {
-            Products = await _context.Products.ToListAsync();
+            Products = _productService.GetAll();
             Catelogies = await _context.Catelories.ToListAsync();
         }
     }

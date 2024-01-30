@@ -9,7 +9,10 @@ namespace SignalRAssignment.Models
         {
         }
 
-        // Define DbSet properties for each entity in your database
+        public ApplicationDBContext()
+        {
+        }
+
         public DbSet<Accounts> Accounts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
@@ -17,6 +20,21 @@ namespace SignalRAssignment.Models
         public DbSet<Catelogy> Catelories { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(GetConnectionString());
+            }
+        }
+        private string GetConnectionString()
+        {
+            IConfiguration config = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("appsettings.json", true, true)
+                        .Build();
+            var strConn = config["ConnectionStrings:DbConnection"];
+            return strConn;
+        }
     }
 }
