@@ -1,0 +1,58 @@
+﻿@page
+@model SignalRAssignment.Pages.Category.IndexModel
+@{
+}
+
+<div class="container p-3">
+    <div class="container p-4">
+        <div class="col-6">
+            <h2 class="text-primary">Category List</h2>
+        </div>
+        <div class="col-6">
+
+        </div>
+    </div>
+    <br /><br />
+    <div>
+        <input type="text" id="searchInput" />
+        <button id="searchButton">Search</button>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Category Name
+                </th>
+                <th>
+                    Category Description
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Categories)
+            {
+                <tr>
+                    <td width="50%" >
+                        @item.CategoryName
+                    </td>
+                    <td width="30%" >
+                        @item.Description
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @section Scripts {
+    <script>
+            document.getElementById("searchButton").addEventListener("click", function () {
+                var searchTerm = document.getElementById("searchInput").value;
+                if (searchTerm.trim() !== "") {
+                    window.location.href = "/Category/Index?searchTerm=" + searchTerm;
+                } else {
+                    window.location.href = "/Category/Index";
+                }
+            });
+    </script>
+    }
+</div>
