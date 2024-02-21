@@ -1,0 +1,49 @@
+﻿@page
+@model             Pages.IndexModel
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h2>Products</h2>
+
+<button style="background-color: green; color: white;">
+    <a asp-page="/ProductCreate" style="text-decoration: none; color: inherit;">Create New</a>
+</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>ImageUrl</th>
+            <th>IsPizzaOfTheWeek</th>
+            <th>Catelogy</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var catelogy in Model.Catelogies)
+        { 
+            @foreach (var product in Model.Products)
+            {
+                if (catelogy.CategoryId == product.CategoryId)
+                {
+                    <tr>
+                        <td>@product.ProductName</td>
+                        <td>$@product.UnitPrice</td>
+                        <td>@catelogy.Description</td>
+                        <td>@product.ProductImage</td>
+                        <td></td>
+                        <td>@catelogy.CategoryName</td>
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@product.ProductId">Edit</a> |
+                            <a asp-page="./Details" asp-route-id="@product.ProductId">Details</a> |
+                            <a asp-page="./Delete" asp-route-id="@product.ProductId">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+        
+    </tbody>
+</table>

@@ -12,6 +12,7 @@ namespace Repository
         private ApplicationDBContext context ;
         private GenericRepository<Account> _accountRepository;
         private GenericRepository<Categories> _categoryRepository;
+        private GenericRepository<Products> _productRepository;
 
         public UnitOfWork(ApplicationDBContext context)
         {
@@ -30,7 +31,18 @@ namespace Repository
                 return _accountRepository;
             }
         }
+        public GenericRepository<Products> ProductsRepository
+        {
+            get
+            {
 
+                if (this._productRepository == null)
+                {
+                    this._productRepository = new GenericRepository<Products>(context);
+                }
+                return _productRepository;
+            }
+        }
         public GenericRepository<Categories> CategoryRepository
         {
             get

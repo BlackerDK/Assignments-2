@@ -34,7 +34,7 @@ namespace SignalRAssignment.Pages
                 {
                     if (user.Type == 1)
                     {
-                        return RedirectToPage("/Privacy");
+                        return RedirectToPage("/Product/Index");
                     }
                     else
                     {
