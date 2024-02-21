@@ -5,7 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-
+builder.Services.AddRazorPages(options =>
+{
+    //...
+}).AddRazorPagesOptions(options =>
+{
+    options.Conventions.AddPageRoute("/Login", "");
+});
 builder.Services.AddDbContext<ApplicationDBContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
