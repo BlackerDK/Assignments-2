@@ -10,7 +10,7 @@ builder.Services.AddRazorPages(options =>
     //...
 }).AddRazorPagesOptions(options =>
 {
-    options.Conventions.AddPageRoute("/Login", "");
+    options.Conventions.AddPageRoute("/Home/Index", "");
 });
 builder.Services.AddDbContext<ApplicationDBContext>(option =>
 {

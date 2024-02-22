@@ -15,6 +15,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Images\Piza1.jpg" />
+    <None Include="wwwroot\Images\Piza2.jpg" />
+    <None Include="wwwroot\Images\Piza3.jpg" />
+    <None Include="wwwroot\Images\Piza4.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.15">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

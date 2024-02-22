@@ -1,0 +1,147 @@
+﻿@page
+@model Pages.IndexModel
+@{
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;			
+		}
+
+		h1 {
+			background-color: #333;
+			color: #fff;
+			padding: 10px;
+			text-align: center;
+		}
+
+		#search {
+			background-color: #ddd;
+			border: none;
+			border-radius: 5px;
+			padding: 10px;
+			width: 40%;
+		}
+
+		#pizza-list {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			
+		}
+
+		.pizza {
+			display: inline-block;
+			vertical-align: top;
+			margin: 0 10px 10px 0;
+			width: 32.3%;
+			box-sizing: border-box;
+			border: 1px solid #EEE9E9;
+			padding:10px;
+		}
+		#pizza-list::after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		.pizza img {
+			width: 100%; /* Chiều rộng cố định */
+			height: 260px; /* Chiều cao cố định */
+			object-fit: cover; /* Đảm bảo ảnh không bị biến đổi khi kích thước không khớp */
+		}
+		.name {
+			margin: 0;
+			color:aqua;
+			margin: 5px auto;
+		}
+		.oneline{
+			font-size: 1.4em;
+			display: flex;
+		}
+		.category {
+			margin: 5px 0;
+			font-weight: bold;
+			font-size: 1em;
+		}
+
+		.description {
+			color: #333;
+			margin: 5px 0;
+		}
+
+		.price {
+			font-weight: bold;
+			margin: 5px auto;
+		}
+
+		.add-button {
+			background-color: blue;
+			border: none;
+			border-radius: 5px;
+			color: #fff;
+			padding: 10px;
+			margin: 10px 0;
+			display: block;
+			width: 30%;
+			margin: 0 auto;
+			cursor: pointer;
+		}
+		.add-button:hover {
+				background-color: #444;
+		}
+		.search-button {
+			padding: 10px 20px; /* Kích thước của nút */
+			font-size: 16px; /* Kích thước chữ */
+			border: 2px solid #3498db; /* Viền của nút */
+			border-radius: 5px; /* Góc bo tròn */
+			background-color: #3498db; /* Màu nền của nút */
+			color: #fff; /* Màu chữ */
+			cursor: pointer; /* Con trỏ chuột khi di chuyển vào nút */
+		}
+
+			/* Hiệu ứng hover khi di chuyển chuột vào nút */
+			.search-button:hover {
+				background-color: #2980b9;
+				border-color: #2980b9;
+			}
+
+			/* Hiệu ứng active khi nút được nhấn */
+			.search-button:active {
+				background-color: #1f68a5;
+				border-color: #1f68a5;
+			}
+			h4{
+			margin-top: 15px
+			}
+	</style>
+}
+<html>
+<body>
+	<h3>Pizzas Menu</h3>
+	<input type="search" id="search" placeholder="Search...">
+	<button class="search-button">Search</button>
+	<h4>All Pizza</h4>
+	<ul id="pizza-list">
+		@foreach (var catelogy in Model.Catelogies)
+		{
+			@foreach (var product in Model.Products)
+			{
+				if (catelogy.CategoryId == product.CategoryId)
+				{
+					<li class="pizza">
+						<img src="/Images/@product.ProductImage"></img>
+						<div class="oneline">
+							<div class="name">@product.ProductName</div>
+							<di class="price">$@product.UnitPrice</di>
+						</div>						
+						<p class="category">Catlogy: @catelogy.CategoryName</p>
+						<p class="description">@catelogy.Description</p>
+						<button class="add-button">Add to Cart</button>
+					</li>
+				}
+			}
+		}		
+	</ul>
+</body>
+</html>
