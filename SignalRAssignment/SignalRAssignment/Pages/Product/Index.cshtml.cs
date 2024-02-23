@@ -27,5 +27,10 @@ namespace SignalRAssignment.Pages
             pageSize: 10);
             Catelogies = _context.CategoryRepository.Get();
         }
+        public IActionResult OnPost()
+        {
+            // Handle button click and redirect to another Razor Page
+            return RedirectToPage("Product/Create");
+        }
     }
 }

@@ -1,0 +1,85 @@
+﻿@page 
+@model SignalRAssignment.Pages.Product.CreateModel
+@{
+}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Creation Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #45a049;
+            }
+    </style>
+</head>
+<body>
+    <h4>Create Product</h4>
+    <form method="post">
+        <div>
+            <label asp-for="Product.ProductName"></label>
+            <input asp-for="Product.ProductName" class="form-control" type="text" required />
+            <span asp-validation-for="Product.ProductName" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="Product.CategoryId"></label>
+            <select asp-for="Product.CategoryId" asp-items="Model.CategoryList" class="form-control" required></select>
+            <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Product.SupplierId"></label>
+            <select asp-for="Product.SupplierId" asp-items="Model.SupplierList" class="form-control" required></select>
+            <span asp-validation-for="Product.SupplierId" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Product.QuantityPerUnit"></label>
+            <input asp-for="Product.QuantityPerUnit" class="form-control" type="number" required></input>
+            <span asp-validation-for="Product.QuantityPerUnit" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="Product.UnitPrice"></label>
+            <input asp-for="Product.UnitPrice" class="form-control" type="number" required />
+            <span asp-validation-for="Product.UnitPrice" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Product.ProductImage"></label>
+            <input asp-for="Image" class="form-control" required />
+            <span asp-validation-for="Product.ProductImage" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Product</button>
+    </form>
+</body>
+</html>

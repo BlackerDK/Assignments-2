@@ -2,12 +2,29 @@
 @model             Pages.IndexModel
 @{
     ViewData["Title"] = "Products";
+    <style>
+        .create-new-button {
+            padding: 12px 24px; /* Kích thước của nút */
+            font-size: 16px; /* Kích thước chữ */
+            border: none; /* Không có đường viền */
+            border-radius: 5px; /* Góc bo tròn */
+            background-color: #2ecc71; /* Màu nền xanh rêu */
+            color: #fff; /* Màu chữ trắng */
+            cursor: pointer; /* Con trỏ chuột khi di chuyển vào nút */
+        }
+        .create-new-button:hover {
+                background-color: #27ae60;
+        }
+        .create-new-button:active {
+                background-color: #218c53;
+        }
+    </style>
 }
 
 <h2>Products</h2>
 
-<button style="background-color: green; color: white;">
-    <a asp-page="/ProductCreate" style="text-decoration: none; color: inherit;">Create New</a>
+<button class="create-new-button">
+    <a href="Product/Create" style="text-decoration: none; color: inherit;">Create New</a>
 </button>
 <table class="table">
     <thead>
