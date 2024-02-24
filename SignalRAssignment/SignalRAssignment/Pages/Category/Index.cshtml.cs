@@ -1,22 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Repository;
-using SignalRAssignment.Models;
+using Repository.ModelsDbF;
 
 namespace SignalRAssignment.Pages.Category
 {
     public class IndexModel : PageModel
     {
 
+        private  UnitOfWork unitOfWork = new UnitOfWork();
 
-        private readonly UnitOfWork unitOfWork;
-
-        public IEnumerable<Categories> Categories { get; set; }
-
-        public IndexModel(ApplicationDBContext context)
-        {
-            unitOfWork = new UnitOfWork(context);
-        }
+        public IEnumerable<Repository.ModelsDbF.Category> Categories { get; set; }
 
         public void OnGet(string searchTerm)
         {

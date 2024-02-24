@@ -2,21 +2,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Repository;
-using SignalRAssignment.Models;
+using Repository.ModelsDbF;
+
 
 namespace SignalRAssignment.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly UnitOfWork _context;
+        private readonly UnitOfWork _context = new UnitOfWork();
 
-        public IndexModel(ApplicationDBContext context)
-        {
-            _context = new UnitOfWork(context);
-        }
-
-        public IEnumerable<Products> Products { get; set; }
-        public IEnumerable<Categories> Catelogies { get; set; }
+        public IEnumerable<Repository.ModelsDbF.Product> Products { get; set; }
+        public IEnumerable<Repository.ModelsDbF.Category> Catelogies { get; set; }
 
         public async Task OnGetAsync()
         {

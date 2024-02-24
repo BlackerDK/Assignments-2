@@ -2,18 +2,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Repository;
-using SignalRAssignment.Models;
+using Repository.ModelsDbF;
 
 namespace SignalRAssignment.Pages.Product
 {
     public class CreateModel : PageModel
     {
-        private readonly UnitOfWork _unitOfWork;
+        private readonly UnitOfWork _unitOfWork = new UnitOfWork();
         public IFormFile Image { get; set; }
-        public CreateModel(ApplicationDBContext context)
-        {
-            _unitOfWork = new UnitOfWork(context);
-        }
 
         public void OnGet()
         {
@@ -24,7 +20,7 @@ namespace SignalRAssignment.Pages.Product
             .Select(x => new SelectListItem { Value = x.SupplierId.ToString(), Text = x.CompanyName })
             .ToList();
         }
-        public Products Product { get; set; }
+        public Repository.ModelsDbF.Product Product { get; set; }
         public List<SelectListItem> CategoryList { get; set; }
         public List<SelectListItem> SupplierList { get; set; }
         public IActionResult OnPost()

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SignalRAssignment.Models;
+using Repository.ModelsDbF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +11,10 @@ namespace Repository
 {
     public class GenericRepository<TEntity> where TEntity : class
     {
-        internal ApplicationDBContext context;
+        internal SqldataContext context;
         internal DbSet<TEntity> dbSet;
 
-        public GenericRepository(ApplicationDBContext context)
+        public GenericRepository(SqldataContext context)
         {
             this.context = context;
             this.dbSet = context.Set<TEntity>();

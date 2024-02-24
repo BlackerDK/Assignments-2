@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using SignalRAssignment.Models;
+using Repository.ModelsDbF;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,10 +13,13 @@ builder.Services.AddRazorPages(options =>
 {
     options.Conventions.AddPageRoute("/Home/Index", "");
 });
-builder.Services.AddDbContext<ApplicationDBContext>(option =>
+builder.Services.AddDbContext<SqldataContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+// Add services to the container.
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -33,6 +37,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapRazorPages();
 

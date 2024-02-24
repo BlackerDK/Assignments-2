@@ -1,4 +1,5 @@
-﻿using SignalRAssignment.Models;
+﻿
+using Repository.ModelsDbF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +10,16 @@ namespace Repository
 {
     public class UnitOfWork : IDisposable
     {
-        private ApplicationDBContext context ;
+        private SqldataContext context = new SqldataContext();
         private GenericRepository<Account> _accountRepository;
-        private GenericRepository<Categories> _categoryRepository;
-        private GenericRepository<Products> _productRepository;
-        private GenericRepository<Suppliers> _supplierRepository;
+        private GenericRepository<Category> _categoryRepository;
+        private GenericRepository<Product> _productRepository;
+        private GenericRepository<Supplier> _supplierRepository;
 
-        public UnitOfWork(ApplicationDBContext context)
-        {
-            this.context = context;
-        }
+        //public UnitOfWork(SqldataContext context)
+        //{
+        //    this.context = context;
+        //}
 
         public GenericRepository<Account> AccountRepository
         {
@@ -32,38 +33,38 @@ namespace Repository
                 return _accountRepository;
             }
         }
-        public GenericRepository<Suppliers> SupplierRepository
+        public GenericRepository<Supplier> SupplierRepository
         {
             get
             {
 
                 if (this._supplierRepository == null)
                 {
-                    this._supplierRepository = new GenericRepository<Suppliers>(context);
+                    this._supplierRepository = new GenericRepository<Supplier>(context);
                 }
                 return _supplierRepository;
             }
         }
-        public GenericRepository<Products> ProductsRepository
+        public GenericRepository<Product> ProductsRepository
         {
             get
             {
 
                 if (this._productRepository == null)
                 {
-                    this._productRepository = new GenericRepository<Products>(context);
+                    this._productRepository = new GenericRepository<Product>(context);
                 }
                 return _productRepository;
             }
         }
-        public GenericRepository<Categories> CategoryRepository
+        public GenericRepository<Category> CategoryRepository
         {
             get
             {
 
                 if (this._categoryRepository == null)
                 {
-                    this._categoryRepository = new GenericRepository<Categories>(context);
+                    this._categoryRepository = new GenericRepository<Category>(context);
                 }
                 return _categoryRepository;
             }

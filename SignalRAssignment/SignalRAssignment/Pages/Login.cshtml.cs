@@ -2,18 +2,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Repository;
-using SignalRAssignment.Models;
+using Repository.ModelsDbF;
+using Microsoft.AspNetCore.Http;
 
 namespace SignalRAssignment.Pages
 {
     public class LoginModel : PageModel
     {
-        private readonly UnitOfWork _context;
-
-        public LoginModel(ApplicationDBContext context)
-        {
-            _context = new UnitOfWork(context);
-        }
+        private readonly UnitOfWork _context = new UnitOfWork();
 
         [BindProperty]
         public string Username { get; set; }
@@ -34,7 +30,9 @@ namespace SignalRAssignment.Pages
                 {
                     if (user.Type == 1)
                     {
+                        HttpContext.Session.SetString("Username", user.UserName);
                         return RedirectToPage("/Product/Index");
+
                     }
                     else
                     {
@@ -56,5 +54,6 @@ namespace SignalRAssignment.Pages
             }
             
         }
+
     }
 }
