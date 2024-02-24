@@ -21,7 +21,6 @@ builder.Services.AddSession(cfg => {                    // Đăng ký dịch v�
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-builder.Services.AddDbContext<ApplicationDBContext>(option =>
 builder.Services.AddDbContext<SqldataContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
