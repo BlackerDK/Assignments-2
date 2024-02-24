@@ -16,6 +16,7 @@ namespace SignalRAssignment.Pages
 
         [BindProperty]
         public string Password { get; set; }
+        public string IsUser {  get; set; }
 
         public void OnGet()
         {
@@ -30,7 +31,8 @@ namespace SignalRAssignment.Pages
                 {
                     if (user.Type == 1)
                     {
-                        HttpContext.Session.SetString("Username", user.UserName);
+                        HttpContext.Session.SetString("UserName", Username);
+                        ViewData["User"] = HttpContext.Session.GetString("UserName");
                         return RedirectToPage("/Product/Index");
 
                     }
