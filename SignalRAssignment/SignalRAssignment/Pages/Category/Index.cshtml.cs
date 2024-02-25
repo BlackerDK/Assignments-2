@@ -8,7 +8,7 @@ namespace SignalRAssignment.Pages.Category
     public class IndexModel : PageModel
     {
 
-        private  UnitOfWork unitOfWork = new UnitOfWork();
+        private UnitOfWork unitOfWork = new UnitOfWork();
 
         public IEnumerable<Repository.ModelsDbF.Category> Categories { get; set; }
 

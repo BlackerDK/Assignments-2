@@ -1,5 +1,5 @@
-﻿@page 
-@model SignalRAssignment.Pages.Product.CreateModel
+﻿@page
+@model SignalRAssignment.Pages.Product.EditModel
 @{
 }
 <html lang="en">
@@ -45,7 +45,7 @@
     </style>
 </head>
 <body>
-    <h4>Create Product</h4>
+    <h4>Update Product</h4>
     <form method="post" enctype="multipart/form-data">
         <div>
             <label asp-for="Product.ProductName"></label>
@@ -73,6 +73,9 @@
             <label asp-for="Product.UnitPrice"></label>
             <input asp-for="Product.UnitPrice" class="form-control" type="number" required />
             <span asp-validation-for="Product.UnitPrice" class="text-danger"></span>
+        </div>
+        <div>
+            <img src="/Images/@Model.Product.ProductImage" width="200px"></img>
         </div>
         <div>
             <label asp-for="Image"></label>

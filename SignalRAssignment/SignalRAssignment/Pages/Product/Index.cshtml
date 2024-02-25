@@ -54,9 +54,9 @@
                         <td></td>
                         <td>@catelogy.CategoryName</td>
                         <td>
-                            <a asp-page="./Edit" asp-route-id="@product.ProductId">Edit</a> |
-                            <a asp-page="./Details" asp-route-id="@product.ProductId">Details</a> |
-                            <a asp-page="./Delete" asp-route-id="@product.ProductId">Delete</a>
+                            <a href="/Product/Edit?id=@product.ProductId">Edit</a>
+                            <a href="/Product/Details?id=@product.ProductId">Details</a>
+                            <a href="/Product/Delete?id=@product.ProductId">Delete</a>
                         </td>
                     </tr>
                 }

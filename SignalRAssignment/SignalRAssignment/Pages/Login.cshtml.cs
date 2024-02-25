@@ -16,8 +16,6 @@ namespace SignalRAssignment.Pages
 
         [BindProperty]
         public string Password { get; set; }
-        public string IsUser {  get; set; }
-
         public void OnGet()
         {
         }
