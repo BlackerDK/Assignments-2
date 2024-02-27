@@ -1,0 +1,53 @@
+﻿@page
+@model SignalRAssignment.Pages.Cart.IndexModel
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<h2> Cart</h2>
+@if (Model.CartItems == null)
+{
+    <p>Your cart is empty.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Add</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CartItems)
+            {
+                <tr>
+                    <td>@item.Product.ProductName</td>
+                    <td>$@{
+                            var totalPrice = item.Product.UnitPrice * item.Quality;
+                        } @totalPrice
+                    </td>
+                    <td>@item.Quality</td> 
+
+                    <td>
+                        <a href="Cart/AddItem?productId=@item.Product.ProductId" style="text-decoration: none; color: inherit;">
+                            <i class="fa "></i> A
+                        </a>
+                    </td>
+                    <td>
+                        <a href="Cart/RemoveItem?productId=@item.Product.ProductId" style="text-decoration: none; color: inherit;">
+                            <span class="bi bi-trash"></span> R
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="Cart/CheckOut">Proceed to Checkout</a>
+}
+
+
+

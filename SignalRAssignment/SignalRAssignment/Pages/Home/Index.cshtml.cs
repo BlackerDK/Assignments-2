@@ -7,8 +7,16 @@ namespace SignalRAssignment.Pages.Home
 {
     public class IndexModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            return Page();
         }
-	}
+
+        public IActionResult OnGetAddItem(int? productId)
+        {
+            
+                return RedirectToPage("/Cart/AddItem", new { productId = productId });
+            
+        }
+    }
 }

@@ -1,0 +1,18 @@
+﻿@page
+@model SignalRAssignment.Pages.Cart.CheckoutModel
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<h2>Checkout</h2>
+
+@if ((decimal)ViewData["TotalMoney"] == 0)
+{
+    <p>Your cart is empty. There is no bill to checkout.</p>
+}
+else
+{
+    <p>Total bill: $@ViewData["TotalMoney"]</p>
+
+    <!-- Add more checkout information or forms here -->
+}

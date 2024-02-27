@@ -114,6 +114,8 @@
 			h4{
 			margin-top: 15px
 			}
+
+		
 	</style>
 }
 <html>
@@ -137,11 +139,13 @@
 						</div>						
 						<p class="category">Catlogy: @catelogy.CategoryName</p>
 						<p class="description">@catelogy.Description</p>
-						<button class="add-button">Add to Cart</button>
+						<a class="btn btn-primary" href="/Cart/AddItem?productId=@product.ProductId" class="add-button-link">Add to Cart</a>
+
 					</li>
 				}
 			}
 		}		
 	</ul>
+	
 </body>
 </html>

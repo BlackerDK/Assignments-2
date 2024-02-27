@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Repository;
 using Repository.ModelsDbF;
 
 
@@ -28,7 +29,7 @@ builder.Services.AddDbContext<SqldataContext>(option =>
 // Add services to the container.
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession();
-
+builder.Services.AddTransient<UnitOfWork>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
