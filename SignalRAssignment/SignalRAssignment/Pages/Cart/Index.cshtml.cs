@@ -23,9 +23,7 @@ namespace SignalRAssignment.Pages.Cart
         public async Task OnGetAsync()
         {
 
-            var username = HttpContext.Session.GetString("Username");
-            if (username != null)
-            {
+           
                 Products = _context.ProductsRepository.Get(filter: null,
                 orderBy: q => q.OrderBy(x => x.ProductName),
                 includeProperties: "Supplier,Category",
@@ -37,11 +35,7 @@ namespace SignalRAssignment.Pages.Cart
                 {
                     CartItems = System.Text.Json.JsonSerializer.Deserialize<List<Repository.ModelsDbF.Cart>>(cartData);
                 }
-            }
-            else
-            {
-                RedirectToPage("/Login");
-            }
+          
         }
         //public async Task<IActionResult> OnPostAddAsync(int productId)
         //{
