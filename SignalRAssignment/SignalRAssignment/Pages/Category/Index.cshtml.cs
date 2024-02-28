@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Repository;
 using Repository.ModelsDbF;
 
@@ -12,15 +13,24 @@ namespace SignalRAssignment.Pages.Category
 
         public IEnumerable<Repository.ModelsDbF.Category> Categories { get; set; }
 
-        public void OnGet(string searchTerm)
+        public IActionResult OnGet(string searchTerm)
         {
-            if (!string.IsNullOrEmpty(searchTerm))
+            var username = HttpContext.Session.GetString("Username");
+            if (username != null)
             {
-                Categories = unitOfWork.CategoryRepository.Get(c => c.CategoryName.Contains(searchTerm)); ;
-            }
-            else
+                if (!string.IsNullOrEmpty(searchTerm))
+                {
+                    Categories = unitOfWork.CategoryRepository.Get(c => c.CategoryName.Contains(searchTerm));
+                    return RedirectToPage("/Category/Index");
+                }
+                else
+                {
+                    Categories = unitOfWork.CategoryRepository.Get();
+                    return RedirectToPage("/Category/Index");
+                }
+            }else
             {
-                Categories = unitOfWork.CategoryRepository.Get();
+               return RedirectToPage("/Login");
             }
         }
     }

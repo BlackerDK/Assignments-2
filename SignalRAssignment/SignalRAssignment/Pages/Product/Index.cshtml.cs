@@ -14,14 +14,24 @@ namespace SignalRAssignment.Pages
         public IEnumerable<Repository.ModelsDbF.Product> Products { get; set; }
         public IEnumerable<Repository.ModelsDbF.Category> Catelogies { get; set; }
 
-        public async Task OnGetAsync()
+    public IActionResult OnGet()
         {
+            var username = HttpContext.Session.GetString("UserName");
+            if (username != null)
+            {
             Products = _context.ProductsRepository.Get(filter: null,
             orderBy: q => q.OrderBy(x => x.ProductName),
             includeProperties: "Supplier,Category",
             pageIndex: 1,
             pageSize: 10);
-            Catelogies = _context.CategoryRepository.Get();
+                Catelogies = _context.CategoryRepository.Get();
+                return Page();
+            }
+            else
+            {
+                return RedirectToPage("/Login");
+            }
+
         }
         public IActionResult OnPost()
         {

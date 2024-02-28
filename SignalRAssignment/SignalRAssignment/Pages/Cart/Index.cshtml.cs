@@ -22,16 +22,25 @@ namespace SignalRAssignment.Pages.Cart
 
         public async Task OnGetAsync()
         {
-            Products = _context.ProductsRepository.Get(filter: null,
+
+            var username = HttpContext.Session.GetString("Username");
+            if (username != null)
+            {
+                Products = _context.ProductsRepository.Get(filter: null,
                 orderBy: q => q.OrderBy(x => x.ProductName),
                 includeProperties: "Supplier,Category",
                 pageIndex: 1,
                 pageSize: 10);
 
-            // Lấy giỏ hàng từ session
-            if (HttpContext.Session.TryGetValue("Cart", out byte[] cartData))
+                // Lấy giỏ hàng từ session
+                if (HttpContext.Session.TryGetValue("Cart", out byte[] cartData))
+                {
+                    CartItems = System.Text.Json.JsonSerializer.Deserialize<List<Repository.ModelsDbF.Cart>>(cartData);
+                }
+            }
+            else
             {
-                CartItems = System.Text.Json.JsonSerializer.Deserialize<List<Repository.ModelsDbF.Cart>>(cartData);
+                RedirectToPage("/Login");
             }
         }
         //public async Task<IActionResult> OnPostAddAsync(int productId)

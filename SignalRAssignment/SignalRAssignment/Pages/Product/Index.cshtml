@@ -21,46 +21,45 @@
     </style>
     
 }
-
-<h2>Products </h2>
-
-<button class="create-new-button">
-    <a href="Product/Create" style="text-decoration: none; color: inherit;">Create New</a>
-</button>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>ImageUrl</th>
-            <th>IsPizzaOfTheWeek</th>
-            <th>Catelogy</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var catelogy in Model.Catelogies)
-        { 
-            @foreach (var product in Model.Products)
+    <h2>Products </h2>
+    <button class="create-new-button">
+        <a href="Product/Create" style="text-decoration: none; color: inherit;">Create New</a>
+    </button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>ImageUrl</th>
+                <th>IsPizzaOfTheWeek</th>
+                <th>Catelogy</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var catelogy in Model.Catelogies)
             {
-                if (catelogy.CategoryId == product.CategoryId)
+                @foreach (var product in Model.Products)
                 {
-                    <tr>
-                        <td>@product.ProductName</td>
-                        <td>$@product.UnitPrice</td>
-                        <td>@catelogy.Description</td>
-                        <td><img src="/Images/@product.ProductImage" width="100px"></img></td>
-                        <td></td>
-                        <td>@catelogy.CategoryName</td>
-                        <td>
-                            <a href="/Product/Edit?id=@product.ProductId">Edit</a>
-                            <a href="/Product/Details?id=@product.ProductId">Details</a>
-                            <a href="/Product/Delete?id=@product.ProductId">Delete</a>
-                        </td>
-                    </tr>
+                    if (catelogy.CategoryId == product.CategoryId)
+                    {
+                        <tr>
+                            <td>@product.ProductName</td>
+                            <td>$@product.UnitPrice</td>
+                            <td>@catelogy.Description</td>
+                            <td><img src="/Images/@product.ProductImage" width="100px"></img></td>
+                            <td></td>
+                            <td>@catelogy.CategoryName</td>
+                            <td>
+                                <a href="/Product/Edit?id=@product.ProductId">Edit</a>
+                                <a href="/Product/Details?id=@product.ProductId">Details</a>
+                                <a href="/Product/Delete?id=@product.ProductId">Delete</a>
+                            </td>
+                        </tr>
+                    }
                 }
             }
-        }   
-    </tbody>
-</table>
+        </tbody>
+    </table>
+
