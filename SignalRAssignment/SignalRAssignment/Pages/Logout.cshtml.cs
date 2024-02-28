@@ -1,14 +1,15 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Http;
 
-namespace SignalRAssignment.Pages.Account
+namespace SignalRAssignment.Pages
 {
     public class LogoutModel : PageModel
     {
         public IActionResult OnGet()
         {
-            HttpContext.Session.Remove("UserName");
+            HttpContext.Session.Clear();
+            HttpContext.SignOutAsync();
             return RedirectToPage("/Login");
         }
     }
